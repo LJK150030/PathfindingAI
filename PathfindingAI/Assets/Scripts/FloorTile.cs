@@ -1,11 +1,16 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class FloorTile : MonoBehaviour
 {
-    public FloorTile[] Neighbors;
+    public int Id;
+    public Dictionary<int, float> Adj;
+    public bool Active;
 
-    private void Awake()
+    public void ActivateTile(int id)
     {
-        Neighbors = new FloorTile[4];
+        Id = id;
+        Active = true;
+        Adj = new Dictionary<int, float>();
     }
 }

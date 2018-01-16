@@ -224,10 +224,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef158a828cdb1da43ad34b90db7060a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FloorTileGameObject: {fileID: 1291624455002616, guid: a37cbb22a41c03c4d9aba3d4d6240bc3,
+  FloorTileGameObject: {fileID: 114166724330092660, guid: f32eea3ecbe005141b90e3a3515eed29,
     type: 2}
-  BoardWidth: 2
-  BoardHeight: 2
+  BoardWidth: 4
+  BoardHeight: 4
 --- !u!4 &2095109742
 Transform:
   m_ObjectHideFlags: 0
