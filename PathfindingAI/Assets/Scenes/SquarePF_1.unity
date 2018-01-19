@@ -218,14 +218,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 2095109740}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef158a828cdb1da43ad34b90db7060a1, type: 3}
+  m_Script: {fileID: 11500000, guid: cf8d50d44ae89364a9de61c4edabbf75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Camera: {fileID: 1571841516}
-  FloorTileGameObject: {fileID: 114166724330092660, guid: f32eea3ecbe005141b90e3a3515eed29,
+  VertexTileGameObject: {fileID: 114530166376798446, guid: f32eea3ecbe005141b90e3a3515eed29,
     type: 2}
-  BoardWidth: 5
-  BoardHeight: 5
+  BoardWidth: 25
+  BoardHeight: 25
+  Update: 0
 --- !u!4 &2095109742
 Transform:
   m_ObjectHideFlags: 0

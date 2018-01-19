@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class FloorTile : MonoBehaviour
+public class VertexTile : MonoBehaviour
 {
     public int Id;
-    public Dictionary<int, float> Adj;
-    public int type; // 0 (deactive), 1 (active), 2 (start), 3 (goal)
+    public Dictionary<Vector2Int, float> Adj;
+    public int type; // 0 (active), 1 (deactivated), 2 (start), 3 (goal)
     public int Xlocation;
     public int Ylocation;
 
@@ -14,22 +14,22 @@ public class FloorTile : MonoBehaviour
     public void ActivateTile(int id, int x, int y)
     {
         Id = id;
-        type = 1;
+        type = 0;
         Xlocation = x;
         Ylocation = y;
-        Adj = new Dictionary<int, float>();
+        Adj = new Dictionary<Vector2Int, float>();
         _render = GetComponent<SpriteRenderer>();
     }
 
-    public void UpdateSprite()
+    private void UpdateSprite()
     {
         switch (type)
         {
             case 0:
-                _render.color = Color.black;
+                _render.color = Color.white;
                 break;
             case 1:
-                _render.color = Color.white;
+                _render.color = Color.black;
                 break;
             case 2:
                 _render.color = Color.green;
@@ -38,5 +38,11 @@ public class FloorTile : MonoBehaviour
                 _render.color = Color.red;
                 break;
         }
+    }
+
+    private void OnMouseDown()
+    {
+        type = (type + 1) % 4;
+        UpdateSprite();
     }
 }
