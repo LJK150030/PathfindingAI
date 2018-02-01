@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4137401738811574}
   - component: {fileID: 212776424279064680}
   - component: {fileID: 61395776581970234}
-  - component: {fileID: 114530166376798446}
+  - component: {fileID: 114765363003441094}
   m_Layer: 0
   m_Name: Square_Tile_mm
   m_TagString: Untagged
@@ -67,7 +67,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.84246, y: 0.84246}
   m_EdgeRadius: 0
---- !u!114 &114530166376798446
+--- !u!114 &114765363003441094
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -75,13 +75,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1920095856501496}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f66a252360f550f4a9d1ad0b69597eff, type: 3}
+  m_Script: {fileID: 11500000, guid: 88d477f959c505a4185222a86c0a2ccb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Id: 0
-  type: 0
-  Xlocation: 0
-  Ylocation: 0
 --- !u!212 &212776424279064680
 SpriteRenderer:
   m_ObjectHideFlags: 1

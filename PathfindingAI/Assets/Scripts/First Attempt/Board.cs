@@ -37,7 +37,7 @@ public class Board : MonoBehaviour
                     if ((y - 1) >= 0)
                     {
                         var toCoord = new Vector2Int(x, y - 1);
-                        if(_adjacencyList[toCoord].type != 1)
+                        if(_adjacencyList[toCoord].Type != 1)
                             AddEdge(fromCoord, toCoord);
                     }
 
@@ -45,7 +45,7 @@ public class Board : MonoBehaviour
                     if ((x + 1) < BoardWidth)
                     {
                         var toCoord = new Vector2Int(x + 1, y);
-                        if (_adjacencyList[toCoord].type != 1)
+                        if (_adjacencyList[toCoord].Type != 1)
                             AddEdge(fromCoord, toCoord);
                     }
 
@@ -53,7 +53,7 @@ public class Board : MonoBehaviour
                     if ((y + 1) < BoardHeight)
                     {
                         var toCoord = new Vector2Int(x, y + 1);
-                        if (_adjacencyList[toCoord].type != 1)
+                        if (_adjacencyList[toCoord].Type != 1)
                             AddEdge(fromCoord, toCoord);
                     }
 
@@ -61,7 +61,7 @@ public class Board : MonoBehaviour
                     if ((x - 1) >= 0)
                     {
                         var toCoord = new Vector2Int(x - 1, y);
-                        if (_adjacencyList[toCoord].type != 1)
+                        if (_adjacencyList[toCoord].Type != 1)
                             AddEdge(fromCoord, toCoord);
                     }
                 }
@@ -223,59 +223,4 @@ public class Board : MonoBehaviour
         }
     }
 
-    /*
-    private void AddCardinalEdges(int x, int y)
-    {
-        //12 o'clock
-        if ((y - 1) >= 0)
-            if (_board[x, y - 1].type != 0)
-                AddEdge(_board[x, y].Id, _board[x, y - 1].Id);
-
-        //3 o'clock
-        if ((x + 1) < BoardWidth)
-            if (_board[x + 1, y].type != 0)
-                AddEdge(_board[x, y].Id, _board[x + 1, y].Id);
-
-        //6 o'clock
-        if ((y + 1) < BoardHeight)
-            if (_board[x, y + 1].type != 0)
-                AddEdge(_board[x, y].Id, _board[x, y + 1].Id);
-
-        //9 o'clock
-        if ((x - 1) >= 0)
-            if (_board[x - 1, y].type != 0)
-                AddEdge(_board[x, y].Id, _board[x - 1, y].Id);
-    }
-
-    private void RemoveCardinalEdges(int x, int y)
-    {
-        //12 o'clock
-        if ((y - 1) >= 0)
-        {
-            RemoveEdge(_board[x, y].Id, _board[x, y - 1].Id);
-            RemoveEdge(_board[x, y - 1].Id, _board[x, y].Id);
-        }
-
-        //3 o'clock
-        if ((x + 1) < BoardWidth)
-        {
-            RemoveEdge(_board[x, y].Id, _board[x + 1, y].Id);
-            RemoveEdge(_board[x + 1, y].Id, _board[x, y].Id);
-        }
-
-        //6 o'clock
-        if ((y + 1) < BoardHeight)
-        {
-            RemoveEdge(_board[x, y].Id, _board[x, y + 1].Id);
-            RemoveEdge(_board[x, y + 1].Id, _board[x, y].Id);
-        }
-
-        //9 o'clock
-        if ((x - 1) >= 0)
-        {
-            RemoveEdge(_board[x, y].Id, _board[x - 1, y].Id);
-            RemoveEdge(_board[x - 1, y].Id, _board[x, y].Id);
-        }
-    }
-    */
 }
