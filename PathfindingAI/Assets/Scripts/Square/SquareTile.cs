@@ -41,6 +41,15 @@ namespace Assets.Scripts.Square
                 case 3:
                     image.color = Color.red;
                     break;
+                case 4: //in the frontier
+                    image.color = Color.gray;
+                    break;
+                case 5: //in the explored
+                    image.color = Color.blue;
+                    break;
+                case 6: //path
+                    image.color = Color.yellow;
+                    break;
                 default:
                     image.color = Color.clear;
                     break;

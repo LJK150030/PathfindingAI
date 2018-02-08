@@ -105,10 +105,10 @@ public class Board : MonoBehaviour
     //sets up adjacency list with North, East, South, West
     private void GenerateCardinalEdges()
     {
-        var actualWidth = BoardWidth * 2 - 1;
-        var actualHeight = BoardHeight * 2 - 1;
-        Vector2 boardLocation = gameObject.transform.position;
-        var currentLocation = boardLocation + new Vector2(-1.0f * actualWidth * 0.5f + 0.5f, actualHeight * 0.5f - 0.5f);
+        //var actualWidth = BoardWidth * 2 - 1;
+        //var actualHeight = BoardHeight * 2 - 1;
+        //Vector2 boardLocation = gameObject.transform.position;
+        //var currentLocation = boardLocation + new Vector2(-1.0f * actualWidth * 0.5f + 0.5f, actualHeight * 0.5f - 0.5f);
 
         for (int x = 0; x < BoardWidth; x++)
         {

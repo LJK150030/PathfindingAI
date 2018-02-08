@@ -8,17 +8,21 @@ namespace Assets.Scripts.Square
         public SquareTile Tile;
         public int Width;
         public int Height;
+        public bool Rest;
 
         private SquareTile[,] _board;
         private int _mouseClick;
         private Vector2Int _startCoord;
         private Vector2Int _endCoord;
-        
+        private bool _doneReseting;
+
         // Use this for initialization
         private void Awake ()
         {
             GenerateSquareBoard();
             StartAndEndTiles();
+            Rest = false;
+            _doneReseting = true;
         }
 
         private void Update()
@@ -130,7 +134,14 @@ namespace Assets.Scripts.Square
                 }
                 
             }
-            
+           
+            if (Rest && _doneReseting)
+            {
+                _doneReseting = false;
+                ResetBoard();
+                _doneReseting = true;
+                Rest = false;
+            }
         }
 
         private void GenerateSquareBoard()
@@ -192,27 +203,77 @@ namespace Assets.Scripts.Square
             return false;
         }
 
-        public List<SquareTile> Neighbors(Vector2Int coord)
+        private void ResetBoard()
         {
-            List<SquareTile> neighborsTiles = new List<SquareTile>();
+            for (int x = 0; x < Width; x++)
+            {
+                for (int y = 0; y < Height; y++)
+                {
+                    if (_board[x, y].GetKind() == 0 || _board[x, y].GetKind() == 2 || _board[x, y].GetKind() == 3)
+                        continue;
+
+                    _board[x, y].SetKind(1);
+                }
+            }
+        }
+
+        public Vector2Int GetStartCoord()
+        {
+            return _startCoord;
+        }
+
+        public Vector2Int GetGoalCoord()
+        {
+            return _endCoord;
+        }
+
+        public List<Vector2Int> Neighbors(Vector2Int coord)
+        {
+            List<Vector2Int> neighborsTiles = new List<Vector2Int>();
             //North
             if ((coord.y - 1) >= 0)
-                neighborsTiles.Add(_board[coord.x, coord.y - 1]);
+            {
+                if(_board[coord.x, coord.y - 1].GetKind() != 0)
+                    neighborsTiles.Add(new Vector2Int(coord.x, coord.y - 1));
+            }
 
             //East
             if ((coord.x + 1) < Width)
-                neighborsTiles.Add(_board[coord.x + 1, coord.y]);
+            {
+                if (_board[coord.x + 1, coord.y].GetKind() != 0)
+                    neighborsTiles.Add(new Vector2Int(coord.x + 1, coord.y));
+            }
 
             //South
             if ((coord.y + 1) < Height)
-                neighborsTiles.Add(_board[coord.x, coord.y + 1]);
+            {
+                if (_board[coord.x, coord.y + 1].GetKind() != 0)
+                    neighborsTiles.Add(new Vector2Int(coord.x, coord.y + 1));
+            }
 
             //West
             if ((coord.x - 1) >= 0)
-                neighborsTiles.Add(_board[coord.x - 1, coord.y]);
+            {
+                if (_board[coord.x - 1, coord.y].GetKind() != 0)
+                    neighborsTiles.Add(new Vector2Int(coord.x - 1, coord.y));
+            }
 
             return neighborsTiles;
         }
 
+        public bool IsStart(Vector2Int coord)
+        {
+            return _board[coord.x, coord.y].GetKind() == 2;
+        }
+
+        public bool IsGoal(Vector2Int coord)
+        {
+            return _board[coord.x, coord.y].GetKind() == 3;
+        }
+
+        public void UpdateKind(Vector2Int coord, int num)
+        {
+            _board[coord.x, coord.y].SetKind(num);
+        }
     }
 }
