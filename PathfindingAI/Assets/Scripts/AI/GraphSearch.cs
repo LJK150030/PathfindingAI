@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts.Square;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Scripts.AI
 {
@@ -183,5 +185,67 @@ namespace Assets.Scripts.AI
             UnexploredList.Clear();
         }
 
+        public void SetFrontier(Frontier frontList)
+        {
+            UnexploredList = frontList;
+        }
+
+        public void Search(bool start)
+        {
+            StartSearch = start;
+        }
+
+        public void SetWaitTime(Slider bar)
+        {
+            WaitTime = bar.value;
+        }
+
+        public void SetLimitBool(Toggle toggle)
+        {
+            UseLimit = toggle.isOn;
+        }
+
+        public void SetLimitAmount(InputField stringField)
+        {
+            foreach (char c in stringField.text)
+            {
+                if (c < '0' || c > '9')
+                {
+                    Limit = 0;
+                    return;
+                }
+            }
+
+            Limit = Int32.Parse(stringField.text);
+        }
+
+        public void SetID(Toggle tog)
+        {
+            IterativeDeepening = tog.isOn;
+        }
+
+        public void SetHeuristic(Toggle tog)
+        {
+            Heuristic = tog.isOn;
+        }
+
+        public void SetToManhattan()
+        {
+            Manhattan = true;
+            Euclidean = false;
+        }
+
+        public void SetToEuclidean()
+        {
+            Manhattan = false;
+            Euclidean = true;
+        }
+
+        public void SetAStar(Toggle tog)
+        {
+            AStar = tog.isOn;
+        }
+
     }
+
 }

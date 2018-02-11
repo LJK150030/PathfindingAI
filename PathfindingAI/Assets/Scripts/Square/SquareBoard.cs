@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Assets.Scripts.Square
 {
@@ -27,13 +28,23 @@ namespace Assets.Scripts.Square
 
         private void Update()
         {
+            //reset board
+            if (Rest && _doneReseting)
+            {
+                _doneReseting = false;
+                ResetBoard();
+                _doneReseting = true;
+                Rest = false;
+            }
+
+
             // if mouse clicked 
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
             {
                 // Get the tile the mouse is currently above
                 RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
 
-                if (hit.collider != null)
+                if (hit.collider != null )
                 {
                     Transform objectHit = hit.transform;
                     Vector2Int coord = new Vector2Int((int) (objectHit.position.x + (Width * 0.5f - 0.5f)),
@@ -78,7 +89,7 @@ namespace Assets.Scripts.Square
             }
             
             //If mouse is held down
-            if (Input.GetMouseButton(0))
+            if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
             {
                 // Get the tile the mouse is currently above
                 RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
@@ -86,6 +97,7 @@ namespace Assets.Scripts.Square
                 //When the mouse is held down, we are in edit mode
                 if (hit.collider != null)
                 {
+
                     Transform objectHit = hit.transform;
                     Vector2Int coord = new Vector2Int((int)(objectHit.position.x + (Width * 0.5f - 0.5f)),
                         (int)(Height - (objectHit.position.y + (Height * 0.5f + 0.5f))));
@@ -133,14 +145,6 @@ namespace Assets.Scripts.Square
                     Debug.Log("Missed");
                 }
                 
-            }
-           
-            if (Rest && _doneReseting)
-            {
-                _doneReseting = false;
-                ResetBoard();
-                _doneReseting = true;
-                Rest = false;
             }
         }
 
@@ -274,6 +278,11 @@ namespace Assets.Scripts.Square
         public void UpdateKind(Vector2Int coord, int num)
         {
             _board[coord.x, coord.y].SetKind(num);
+        }
+
+        public void ResetBoard(bool restbool)
+        {
+            Rest = restbool;
         }
     }
 }
