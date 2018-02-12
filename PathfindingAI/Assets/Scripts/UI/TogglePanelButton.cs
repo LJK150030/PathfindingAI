@@ -13,7 +13,7 @@ namespace Assets.Scripts.UI
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1))
+            if (Input.GetKeyDown(KeyCode.Space))
                 TogglePanel(UIPanel);
         }
     }

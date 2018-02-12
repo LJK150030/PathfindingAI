@@ -16,6 +16,7 @@ namespace Assets.Scripts.Square
         private Vector2Int _startCoord;
         private Vector2Int _endCoord;
         private bool _doneReseting;
+        private bool _inUI;
 
         // Use this for initialization
         private void Awake ()
@@ -24,6 +25,7 @@ namespace Assets.Scripts.Square
             StartAndEndTiles();
             Rest = false;
             _doneReseting = true;
+            _inUI = false;
         }
 
         private void Update()
@@ -39,8 +41,14 @@ namespace Assets.Scripts.Square
 
 
             // if mouse clicked 
-            if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
+            if (Input.GetMouseButtonDown(0) && !_inUI)
             {
+                if (EventSystem.current.IsPointerOverGameObject())
+                {
+                    _inUI = true;
+                    return;
+                }
+                
                 // Get the tile the mouse is currently above
                 RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
 
@@ -89,8 +97,14 @@ namespace Assets.Scripts.Square
             }
             
             //If mouse is held down
-            if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
+            if (Input.GetMouseButton(0) && !_inUI)
             {
+                if (EventSystem.current.IsPointerOverGameObject())
+                {
+                    _inUI = true;
+                    return;
+                }
+
                 // Get the tile the mouse is currently above
                 RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
 
@@ -99,8 +113,8 @@ namespace Assets.Scripts.Square
                 {
 
                     Transform objectHit = hit.transform;
-                    Vector2Int coord = new Vector2Int((int)(objectHit.position.x + (Width * 0.5f - 0.5f)),
-                        (int)(Height - (objectHit.position.y + (Height * 0.5f + 0.5f))));
+                    Vector2Int coord = new Vector2Int((int) (objectHit.position.x + (Width * 0.5f - 0.5f)),
+                        (int) (Height - (objectHit.position.y + (Height * 0.5f + 0.5f))));
 
                     //based on the tile type when the mouse was clicked
                     switch (_mouseClick)
@@ -144,7 +158,11 @@ namespace Assets.Scripts.Square
                 {
                     Debug.Log("Missed");
                 }
-                
+            }
+
+            if (Input.GetMouseButtonUp(0))
+            {
+                _inUI = false;
             }
         }
 

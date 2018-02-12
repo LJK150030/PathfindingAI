@@ -25,6 +25,7 @@ namespace Assets.Scripts.AI
         private SquareBoard _board;
         private bool _searchRunning;
         private int _iterations;
+        
 
         private void Awake()
         {
