@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4890032940094306}
   - component: {fileID: 114056631072317808}
+  - component: {fileID: 114799593803837240}
   m_Layer: 0
   m_Name: Floor
   m_TagString: Untagged
@@ -52,5 +53,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Tile: {fileID: 114765363003441094, guid: f32eea3ecbe005141b90e3a3515eed29, type: 2}
-  Width: 5
-  Height: 5
+  Width: 16
+  Height: 10
+  Rest: 0
+--- !u!114 &114799593803837240
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1636912144142274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff94eda3cee255c4da1ff60339d7eb56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UnexploredList: {fileID: 11400000, guid: 7e519893932a2a94380137ce8e1ddba1, type: 2}
+  WaitTime: 0
+  StartSearch: 1
+  UseLimit: 0
+  Limit: 5
+  IterativeDeepening: 0
+  Heuristic: 0
+  Manhattan: 0
+  Euclidean: 0
+  AStar: 0

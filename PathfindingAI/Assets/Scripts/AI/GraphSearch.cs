@@ -20,11 +20,11 @@ namespace Assets.Scripts.AI
         public bool Euclidean;
         public bool AStar;
 
-        private Dictionary<Vector2Int, SearchNode> _exploredList;
+        [HideInInspector] public Dictionary<Vector2Int, SearchNode> _exploredList;
         private bool _foundGoal;
         private SquareBoard _board;
-        private bool _searchRunning;
-        private int _iterations;
+        [HideInInspector] public bool _searchRunning;
+        [HideInInspector] public int _iterations;
         
 
         private void Awake()
@@ -42,14 +42,16 @@ namespace Assets.Scripts.AI
             Manhattan = false;
             Euclidean = false;
             AStar = false;
-            _iterations = -1;
+            _iterations = -1 ;
         }
 
         private void Update()
         {
-            if (!_searchRunning && StartSearch)
+            //if (!_searchRunning && StartSearch)
+            if (StartSearch)
             {
                 _searchRunning = true;
+                StartSearch = false;
                 if (IterativeDeepening)
                 {
                     if (_iterations < Limit)
@@ -59,7 +61,7 @@ namespace Assets.Scripts.AI
                 }
                 else
                 {
-                    _iterations = Limit;
+                    _iterations = Limit - 1;
                     StartCoroutine(Search());
                 }
             }
@@ -83,7 +85,7 @@ namespace Assets.Scripts.AI
                 //if the frontier is empty then return failure
                 if (UnexploredList.IsEmpty())
                 {
-                    Debug.Log("Open List is empty");
+                    //Debug.Log("Open List is empty");
                     _foundGoal = false;
                     break;
                 }
@@ -94,9 +96,9 @@ namespace Assets.Scripts.AI
                 //if the node contains a goal state then return the corresponding solution
                 if (_board.IsGoal(node.GetState()))
                 {
-                    Debug.Log("Found the goal");
+                    //Debug.Log("Found the goal");
 
-                    while (!_board.IsStart(node.GetParent().GetState()))
+                    while (node.GetParent().GetParent() != null)
                     {
                         node = node.GetParent();
                         _board.UpdateKind(node.GetState(), 6);
@@ -106,20 +108,20 @@ namespace Assets.Scripts.AI
                     break;
                 }
 
-                //add the node to the explored set
-                _exploredList.Add(node.GetState(), node);
-                if(_board.IsStart(node.GetState()))
-                    _board.UpdateKind(node.GetState(), 2);
-                if (_board.IsGoal(node.GetState()))
-                    _board.UpdateKind(node.GetState(), 3);
-                if (!_board.IsGoal(node.GetState()) && !_board.IsStart(node.GetState()))
-                    _board.UpdateKind(node.GetState(), 5);
-
-                //if we are using a stack and we have a limit
-                if (UseLimit && node.GetPathCost() >= _iterations)
+                //if we are using a limit
+                if (UseLimit && node.GetPathCost() > _iterations)
                 {
                     continue;
                 }
+
+                //add the node to the explored set
+                _exploredList.Add(node.GetState(), node);
+                if (!_board.IsGoal(node.GetState()) && !_board.IsStart(node.GetState()))
+                    _board.UpdateKind(node.GetState(), 5);
+                if (_board.IsStart(node.GetState()))
+                    _board.UpdateKind(node.GetState(), 2);
+                if (_board.IsGoal(node.GetState()))
+                    _board.UpdateKind(node.GetState(), 3);
 
                 //expand the chosen node, adding the resulting nodes to the frontier only if not in the frontier or explored set
                 List<Vector2Int> nextTiles = _board.Neighbors(node.GetState());
@@ -157,7 +159,6 @@ namespace Assets.Scripts.AI
                         }
                     }
 
-
                     UnexploredList.Insert(temp);
                     _board.UpdateKind(tile, _board.IsGoal(tile) ? 3 : 4);
                     yield return new WaitForSeconds(WaitTime);
@@ -173,13 +174,13 @@ namespace Assets.Scripts.AI
                 {
                     StartSearch = false;
                     _searchRunning = false;
-                    Debug.Log("On Limit " + _iterations);
-                    _iterations = -1;
+                    //Debug.Log("On Limit " + _iterations);
+                    //_iterations = -1;
                 }
             }
             else
             {
-                StartSearch = false;
+                //StartSearch = false;
                 _searchRunning = false;
                 _iterations = -1;
             }

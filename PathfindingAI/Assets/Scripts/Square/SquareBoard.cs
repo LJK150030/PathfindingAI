@@ -10,6 +10,7 @@ namespace Assets.Scripts.Square
         public int Width;
         public int Height;
         public bool Rest;
+        public bool AIRunning;
 
         private SquareTile[,] _board;
         private int _mouseClick;
@@ -26,6 +27,7 @@ namespace Assets.Scripts.Square
             Rest = false;
             _doneReseting = true;
             _inUI = false;
+            AIRunning = false;
         }
 
         private void Update()
@@ -39,6 +41,8 @@ namespace Assets.Scripts.Square
                 Rest = false;
             }
 
+            if (AIRunning)
+                return;
 
             // if mouse clicked 
             if (Input.GetMouseButtonDown(0) && !_inUI)
@@ -237,6 +241,7 @@ namespace Assets.Scripts.Square
                     _board[x, y].SetKind(1);
                 }
             }
+            Debug.Log("Reset board");
         }
 
         public Vector2Int GetStartCoord()

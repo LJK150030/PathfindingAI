@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1620251060164028}
+  m_IsPrefabParent: 1
+--- !u!1 &1620251060164028
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4101291219701634}
+  - component: {fileID: 114506228096140706}
+  m_Layer: 0
+  m_Name: GameController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4101291219701634
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1620251060164028}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114506228096140706
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1620251060164028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d375bac39376234eae0765cddb637a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AI: {fileID: 0}
+  SquareTesBoard: {fileID: 0}
+  DataStructures:
+  - {fileID: 11400000, guid: 7e519893932a2a94380137ce8e1ddba1, type: 2}
+  - {fileID: 11400000, guid: a152a036cc8b6564895a03c62fcd9b10, type: 2}
+  - {fileID: 11400000, guid: 39b2539466bb22149bd6ee64ef2de288, type: 2}
+  UIPanel: {fileID: 0}
+  QueueButton: {fileID: 0}
+  StackButton: {fileID: 0}
+  PriorityButton: {fileID: 0}
+  StartButton: {fileID: 0}
+  ResetButton: {fileID: 0}
+  TimeSlider: {fileID: 0}
+  LimitToggle: {fileID: 0}
+  LimitInput: {fileID: 0}
+  IdToggle: {fileID: 0}
+  HeuristicToggle: {fileID: 0}
+  ManhattanButton: {fileID: 0}
+  EuclideanButton: {fileID: 0}
+  AstarToggle: {fileID: 0}
